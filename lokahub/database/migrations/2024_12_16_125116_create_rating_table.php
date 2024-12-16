@@ -12,8 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rating', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id(); // Primary key
+            $table->unsignedBigInteger('user_id'); // Relasi ke tabel user
+            $table->unsignedBigInteger('produk_id'); // Relasi ke tabel produk
+            $table->text('ulasan'); // Ulasan produk
+            $table->timestamps(); // created_at & updated_at
+
+            // Foreign key constraints
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('produk_id')->references('id')->on('produk');
         });
     }
 

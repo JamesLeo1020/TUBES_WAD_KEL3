@@ -12,8 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('about', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id(); // Primary key
+            $table->text('about'); // Informasi tentang platform
+            $table->string('contact_email'); // Email kontak
+            $table->string('contact_phone'); // Nomor telepon kontak
+            $table->string('contact_address'); // Alamat kontak
+            $table->timestamps(); // created_at & updated_at
         });
     }
 

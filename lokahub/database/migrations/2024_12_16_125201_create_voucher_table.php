@@ -12,8 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('voucher', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id(); // Primary key
+            $table->string('nama'); // Nama voucher
+            $table->integer('besar_potongan'); // Jumlah potongan (nominal atau persen)
+            $table->text('deskripsi'); // Deskripsi voucher
+            $table->timestamps(); // created_at & updated_at
         });
     }
 

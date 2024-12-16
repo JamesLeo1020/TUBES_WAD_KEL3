@@ -12,8 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('checkout', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id(); // Primary key
+            $table->unsignedBigInteger('produk_id'); // Relasi ke tabel produk
+            $table->integer('produk_harga'); // Harga produk
+            $table->unsignedBigInteger('user_id'); // Relasi ke tabel user
+            $table->string('user_alamat'); // Alamat user
+            $table->integer('total_harga'); // Total harga checkout
+            $table->unsignedBigInteger('voucher_id')->nullable(); // Relasi ke tabel voucher
+            $table->timestamps(); // created_at & updated_at
+
+            // Foreign key constraints
+            $table->foreign('produk_id')->references('id')->on('produk');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('voucher_id')->references('id')->on('voucher');
         });
     }
 
